@@ -1,4 +1,4 @@
-﻿namespace InventoryManagementSystem;
+namespace InventoryManagementSystem;
 
 partial class Form1
 {
@@ -28,11 +28,31 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-        components = new System.ComponentModel.Container();
+        btnCategories = new Button();
+        SuspendLayout();
+        //
+        // btnCategories
+        //
+        btnCategories.Location = new Point(30, 30);
+        btnCategories.Name = "btnCategories";
+        btnCategories.Size = new Size(160, 40);
+        btnCategories.TabIndex = 0;
+        btnCategories.Text = "Categories";
+        btnCategories.UseVisualStyleBackColor = true;
+        btnCategories.Click += btnCategories_Click;
+        //
+        // Form1
+        //
+        AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
-        Text = "Form1";
+        Controls.Add(btnCategories);
+        Name = "Form1";
+        Text = "Inventory Management System";
+        ResumeLayout(false);
     }
 
     #endregion
+
+    private Button btnCategories;
 }
