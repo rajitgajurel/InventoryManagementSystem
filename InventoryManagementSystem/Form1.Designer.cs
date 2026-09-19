@@ -29,6 +29,7 @@ partial class Form1
     private void InitializeComponent()
     {
         btnCategories = new Button();
+        btnProducts = new Button();
         SuspendLayout();
         //
         // btnCategories
@@ -41,11 +42,22 @@ partial class Form1
         btnCategories.UseVisualStyleBackColor = true;
         btnCategories.Click += btnCategories_Click;
         //
+        // btnProducts
+        //
+        btnProducts.Location = new Point(30, 85);
+        btnProducts.Name = "btnProducts";
+        btnProducts.Size = new Size(160, 40);
+        btnProducts.TabIndex = 1;
+        btnProducts.Text = "Products";
+        btnProducts.UseVisualStyleBackColor = true;
+        btnProducts.Click += btnProducts_Click;
+        //
         // Form1
         //
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(btnProducts);
         Controls.Add(btnCategories);
         Name = "Form1";
         Text = "Inventory Management System";
@@ -55,4 +67,5 @@ partial class Form1
     #endregion
 
     private Button btnCategories;
+    private Button btnProducts;
 }

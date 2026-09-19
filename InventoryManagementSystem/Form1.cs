@@ -15,4 +15,11 @@ public partial class Form1 : Form
         CategoryForm form = new CategoryForm();
         form.ShowDialog();
     }
+
+    // Opens the products screen
+    private void btnProducts_Click(object sender, EventArgs e)
+    {
+        ProductForm form = new ProductForm();
+        form.ShowDialog();
+    }
 }
