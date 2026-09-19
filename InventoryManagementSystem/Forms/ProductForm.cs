@@ -9,6 +9,9 @@ namespace InventoryManagementSystem.Forms
         private ProductData productData = new ProductData();
         private CategoryData categoryData = new CategoryData();
 
+        // Id of the product picked in the grid, 0 means nothing selected
+        private int selectedId = 0;
+
         public ProductForm()
         {
             InitializeComponent();
@@ -25,6 +28,8 @@ namespace InventoryManagementSystem.Forms
         {
             try
             {
+                // ValueMember lets the grid click pick the category by its id
+                cboCategory.ValueMember = "Id";
                 cboCategory.DataSource = categoryData.GetAll();
                 cboCategory.SelectedIndex = -1;
             }
@@ -68,6 +73,24 @@ namespace InventoryManagementSystem.Forms
             }
         }
 
+        // Puts the clicked row into the input boxes
+        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            Product product = (Product)dgvProducts.Rows[e.RowIndex].DataBoundItem;
+            selectedId = product.Id;
+            txtCode.Text = product.Code;
+            txtName.Text = product.Name;
+            txtPrice.Text = product.UnitPrice.ToString("0.00");
+            txtQuantity.Text = product.Quantity.ToString();
+            txtMinLevel.Text = product.MinStockLevel.ToString();
+            cboCategory.SelectedValue = product.CategoryId;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -92,6 +115,67 @@ namespace InventoryManagementSystem.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Check Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (selectedId == 0)
+            {
+                MessageBox.Show("Please select a product from the list first.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                Product product = ReadInputs();
+                product.Id = selectedId;
+
+                // Another product may already use the new code
+                if (productData.CodeExists(product.Code, selectedId))
+                {
+                    MessageBox.Show("A product with this code already exists.", "Duplicate Code", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                productData.Update(product);
+                MessageBox.Show("Product updated.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearInputs();
+                LoadProducts();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Check Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (selectedId == 0)
+            {
+                MessageBox.Show("Please select a product from the list first.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult answer = MessageBox.Show("Delete product '" + txtName.Text + "'?\nIts stock history will be deleted too.", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (answer != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                productData.Delete(selectedId);
+                ClearInputs();
+                LoadProducts();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -143,6 +227,7 @@ namespace InventoryManagementSystem.Forms
 
         private void ClearInputs()
         {
+            selectedId = 0;
             txtCode.Clear();
             txtName.Clear();
             txtPrice.Clear();

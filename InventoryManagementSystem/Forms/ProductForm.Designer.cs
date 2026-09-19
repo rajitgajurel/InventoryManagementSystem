@@ -47,6 +47,8 @@ namespace InventoryManagementSystem.Forms
             lblMinLevel = new Label();
             txtMinLevel = new TextBox();
             btnAdd = new Button();
+            btnUpdate = new Button();
+            btnDelete = new Button();
             btnClear = new Button();
             dgvProducts = new DataGridView();
             lblCount = new Label();
@@ -230,6 +232,38 @@ namespace InventoryManagementSystem.Forms
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             //
+            // btnUpdate
+            //
+            btnUpdate.BackColor = Color.FromArgb(0, 123, 255);
+            btnUpdate.Cursor = Cursors.Hand;
+            btnUpdate.FlatAppearance.BorderSize = 0;
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnUpdate.ForeColor = Color.White;
+            btnUpdate.Location = new Point(150, 250);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(120, 38);
+            btnUpdate.TabIndex = 3;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
+            //
+            // btnDelete
+            //
+            btnDelete.BackColor = Color.FromArgb(220, 53, 69);
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(280, 250);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(120, 38);
+            btnDelete.TabIndex = 4;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
+            //
             // btnClear
             //
             btnClear.BackColor = Color.FromArgb(108, 117, 125);
@@ -238,10 +272,10 @@ namespace InventoryManagementSystem.Forms
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(150, 250);
+            btnClear.Location = new Point(410, 250);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(120, 38);
-            btnClear.TabIndex = 3;
+            btnClear.TabIndex = 5;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
@@ -283,7 +317,8 @@ namespace InventoryManagementSystem.Forms
             dgvProducts.RowTemplate.Height = 32;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProducts.Size = new Size(880, 260);
-            dgvProducts.TabIndex = 4;
+            dgvProducts.TabIndex = 6;
+            dgvProducts.CellClick += dgvProducts_CellClick;
             //
             // lblCount
             //
@@ -293,7 +328,7 @@ namespace InventoryManagementSystem.Forms
             lblCount.Location = new Point(20, 575);
             lblCount.Name = "lblCount";
             lblCount.Size = new Size(112, 20);
-            lblCount.TabIndex = 5;
+            lblCount.TabIndex = 7;
             lblCount.Text = "Total products: 0";
             //
             // ProductForm
@@ -305,6 +340,8 @@ namespace InventoryManagementSystem.Forms
             Controls.Add(lblCount);
             Controls.Add(dgvProducts);
             Controls.Add(btnClear);
+            Controls.Add(btnDelete);
+            Controls.Add(btnUpdate);
             Controls.Add(btnAdd);
             Controls.Add(grpDetails);
             Controls.Add(pnlHeader);
@@ -341,6 +378,8 @@ namespace InventoryManagementSystem.Forms
         private Label lblMinLevel;
         private TextBox txtMinLevel;
         private Button btnAdd;
+        private Button btnUpdate;
+        private Button btnDelete;
         private Button btnClear;
         private DataGridView dgvProducts;
         private Label lblCount;
