@@ -12,15 +12,15 @@ public class Category : BaseEntity, IValidatable
     {
         if (string.IsNullOrWhiteSpace(Name))
         {
-            throw new Exception("Category name is required.");
+            throw new ValidationException("Category name is required.");
         }
         if (Name.Trim().Length > 50)
         {
-            throw new Exception("Category name must be 50 characters or less.");
+            throw new ValidationException("Category name must be 50 characters or less.");
         }
         if (Description != null && Description.Length > 200)
         {
-            throw new Exception("Description must be 200 characters or less.");
+            throw new ValidationException("Description must be 200 characters or less.");
         }
     }
 

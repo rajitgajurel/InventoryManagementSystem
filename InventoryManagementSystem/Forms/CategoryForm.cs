@@ -1,5 +1,6 @@
 using InventoryManagementSystem.Data;
 using InventoryManagementSystem.Models;
+using InventoryManagementSystem.Validation;
 using MySql.Data.MySqlClient;
 
 namespace InventoryManagementSystem.Forms
@@ -77,7 +78,7 @@ namespace InventoryManagementSystem.Forms
             {
                 ShowDatabaseError(ex);
             }
-            catch (Exception ex)
+            catch (ValidationException ex)
             {
                 MessageBox.Show(ex.Message, "Check Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -108,7 +109,7 @@ namespace InventoryManagementSystem.Forms
             {
                 ShowDatabaseError(ex);
             }
-            catch (Exception ex)
+            catch (ValidationException ex)
             {
                 MessageBox.Show(ex.Message, "Check Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }

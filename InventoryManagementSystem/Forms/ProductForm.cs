@@ -1,5 +1,6 @@
 using InventoryManagementSystem.Data;
 using InventoryManagementSystem.Models;
+using InventoryManagementSystem.Validation;
 using MySql.Data.MySqlClient;
 
 namespace InventoryManagementSystem.Forms
@@ -112,7 +113,7 @@ namespace InventoryManagementSystem.Forms
             {
                 MessageBox.Show("Database error.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception ex)
+            catch (ValidationException ex)
             {
                 MessageBox.Show(ex.Message, "Check Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -147,7 +148,7 @@ namespace InventoryManagementSystem.Forms
             {
                 MessageBox.Show("Database error.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception ex)
+            catch (ValidationException ex)
             {
                 MessageBox.Show(ex.Message, "Check Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -184,11 +185,11 @@ namespace InventoryManagementSystem.Forms
         {
             if (txtCode.Text.Trim() == "" || txtName.Text.Trim() == "")
             {
-                throw new Exception("Product code and name are required.");
+                throw new ValidationException("Product code and name are required.");
             }
             if (cboCategory.SelectedItem == null)
             {
-                throw new Exception("Please choose a category.");
+                throw new ValidationException("Please choose a category.");
             }
 
             decimal price;
@@ -196,15 +197,15 @@ namespace InventoryManagementSystem.Forms
             int minLevel;
             if (!decimal.TryParse(txtPrice.Text.Trim(), out price))
             {
-                throw new Exception("Unit price must be a number.");
+                throw new ValidationException("Unit price must be a number.");
             }
             if (!int.TryParse(txtQuantity.Text.Trim(), out quantity))
             {
-                throw new Exception("Quantity must be a whole number.");
+                throw new ValidationException("Quantity must be a whole number.");
             }
             if (!int.TryParse(txtMinLevel.Text.Trim(), out minLevel))
             {
-                throw new Exception("Min stock level must be a whole number.");
+                throw new ValidationException("Min stock level must be a whole number.");
             }
 
             Category category = (Category)cboCategory.SelectedItem;
@@ -217,6 +218,9 @@ namespace InventoryManagementSystem.Forms
             product.UnitPrice = price;
             product.Quantity = quantity;
             product.MinStockLevel = minLevel;
+
+            // Last check before it goes to the database
+            product.Validate();
             return product;
         }
 

@@ -1,7 +1,9 @@
+using InventoryManagementSystem.Validation;
+
 namespace InventoryManagementSystem.Models;
 
 // A product sold in the shop
-public class Product : BaseEntity
+public class Product : BaseEntity, IValidatable
 {
     // Private fields so bad numbers can't be set directly
     private decimal unitPrice;
@@ -22,7 +24,7 @@ public class Product : BaseEntity
         {
             if (value < 0)
             {
-                throw new ArgumentException("Unit price cannot be negative.");
+                throw new ValidationException("Unit price cannot be negative.");
             }
             unitPrice = value;
         }
@@ -35,7 +37,7 @@ public class Product : BaseEntity
         {
             if (value < 0)
             {
-                throw new ArgumentException("Quantity cannot be negative.");
+                throw new ValidationException("Quantity cannot be negative.");
             }
             quantity = value;
         }
@@ -48,9 +50,46 @@ public class Product : BaseEntity
         {
             if (value < 0)
             {
-                throw new ArgumentException("Minimum stock level cannot be negative.");
+                throw new ValidationException("Minimum stock level cannot be negative.");
             }
             minStockLevel = value;
+        }
+    }
+
+    // Checks everything before the product is saved
+    public void Validate()
+    {
+        if (string.IsNullOrWhiteSpace(Code))
+        {
+            throw new ValidationException("Product code is required.");
+        }
+        if (Code.Trim().Length > 20)
+        {
+            throw new ValidationException("Product code must be 20 characters or less.");
+        }
+        if (string.IsNullOrWhiteSpace(Name))
+        {
+            throw new ValidationException("Product name is required.");
+        }
+        if (Name.Trim().Length > 100)
+        {
+            throw new ValidationException("Product name must be 100 characters or less.");
+        }
+        if (CategoryId <= 0)
+        {
+            throw new ValidationException("Please choose a category.");
+        }
+        if (UnitPrice < 0)
+        {
+            throw new ValidationException("Unit price cannot be negative.");
+        }
+        if (Quantity < 0)
+        {
+            throw new ValidationException("Quantity cannot be negative.");
+        }
+        if (MinStockLevel < 0)
+        {
+            throw new ValidationException("Minimum stock level cannot be negative.");
         }
     }
 
