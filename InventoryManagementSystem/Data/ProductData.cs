@@ -102,6 +102,24 @@ public class ProductData
         }
     }
 
+    // Adds the change to the quantity (negative change takes stock away), used inside a transaction
+    public void ChangeQuantity(int productId, int change, MySqlConnection conn, MySqlTransaction transaction)
+    {
+        string sql = "UPDATE products SET quantity = quantity + @change WHERE product_id = @id";
+
+        using (MySqlCommand cmd = new MySqlCommand(sql, conn, transaction))
+        {
+            cmd.Parameters.AddWithValue("@change", change);
+            cmd.Parameters.AddWithValue("@id", productId);
+            int rows = cmd.ExecuteNonQuery();
+
+            if (rows == 0)
+            {
+                throw new Exception("Product was not found. It may have been deleted.");
+            }
+        }
+    }
+
     // Same parameters are used by Add and Update
     private void AddParameters(MySqlCommand cmd, Product product)
     {
