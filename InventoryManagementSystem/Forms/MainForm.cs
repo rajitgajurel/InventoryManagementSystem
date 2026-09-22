@@ -20,6 +20,12 @@ namespace InventoryManagementSystem.Forms
             form.ShowDialog();
         }
 
+        private void btnStockMovement_Click(object sender, EventArgs e)
+        {
+            StockMovementForm form = new StockMovementForm();
+            form.ShowDialog();
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
