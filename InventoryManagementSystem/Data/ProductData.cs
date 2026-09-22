@@ -120,6 +120,24 @@ public class ProductData
         }
     }
 
+    // Gets the current quantity and locks the row until the transaction ends
+    public int GetQuantity(int productId, MySqlConnection conn, MySqlTransaction transaction)
+    {
+        string sql = "SELECT quantity FROM products WHERE product_id = @id FOR UPDATE";
+
+        using (MySqlCommand cmd = new MySqlCommand(sql, conn, transaction))
+        {
+            cmd.Parameters.AddWithValue("@id", productId);
+            object result = cmd.ExecuteScalar();
+
+            if (result == null)
+            {
+                throw new Exception("Product was not found. It may have been deleted.");
+            }
+            return Convert.ToInt32(result);
+        }
+    }
+
     // Same parameters are used by Add and Update
     private void AddParameters(MySqlCommand cmd, Product product)
     {
