@@ -319,6 +319,7 @@ namespace InventoryManagementSystem.Forms
             dgvProducts.Size = new Size(880, 260);
             dgvProducts.TabIndex = 6;
             dgvProducts.CellClick += dgvProducts_CellClick;
+            dgvProducts.CellFormatting += dgvProducts_CellFormatting;
             //
             // lblCount
             //

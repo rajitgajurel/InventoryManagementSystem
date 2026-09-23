@@ -66,11 +66,38 @@ namespace InventoryManagementSystem.Forms
                 dgvProducts.Columns["MinStockLevel"].FillWeight = 11;
                 dgvProducts.ClearSelection();
 
-                lblCount.Text = "Total products: " + products.Count;
+                // Count how many are low so the user can see it under the list
+                int lowCount = 0;
+                foreach (Product product in products)
+                {
+                    if (product.IsLowStock())
+                    {
+                        lowCount++;
+                    }
+                }
+                lblCount.Text = "Total products: " + products.Count + "     Low stock (shown in red): " + lowCount;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Could not load products.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Colours low stock rows red each time a cell is drawn
+        private void dgvProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            Product product = (Product)dgvProducts.Rows[e.RowIndex].DataBoundItem;
+            if (product != null && product.IsLowStock())
+            {
+                e.CellStyle.BackColor = Color.MistyRose;
+                e.CellStyle.ForeColor = Color.DarkRed;
+                e.CellStyle.SelectionBackColor = Color.IndianRed;
+                e.CellStyle.SelectionForeColor = Color.White;
             }
         }
 
