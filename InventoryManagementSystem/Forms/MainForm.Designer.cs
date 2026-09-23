@@ -31,6 +31,7 @@ namespace InventoryManagementSystem.Forms
             pnlHeader = new Panel();
             lblTitle = new Label();
             lblSubtitle = new Label();
+            lblLowStock = new Label();
             btnProducts = new Button();
             btnCategories = new Button();
             btnStockMovement = new Button();
@@ -71,6 +72,19 @@ namespace InventoryManagementSystem.Forms
             lblSubtitle.TabIndex = 1;
             lblSubtitle.Text = "Choose what you want to manage";
             //
+            // lblLowStock
+            //
+            lblLowStock.BackColor = Color.FromArgb(233, 236, 239);
+            lblLowStock.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblLowStock.ForeColor = Color.DimGray;
+            lblLowStock.Location = new Point(40, 112);
+            lblLowStock.Name = "lblLowStock";
+            lblLowStock.Padding = new Padding(10, 0, 10, 0);
+            lblLowStock.Size = new Size(520, 50);
+            lblLowStock.TabIndex = 1;
+            lblLowStock.Text = "Checking stock levels...";
+            lblLowStock.TextAlign = ContentAlignment.MiddleLeft;
+            //
             // btnProducts
             //
             btnProducts.BackColor = Color.FromArgb(0, 123, 255);
@@ -79,10 +93,10 @@ namespace InventoryManagementSystem.Forms
             btnProducts.FlatStyle = FlatStyle.Flat;
             btnProducts.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnProducts.ForeColor = Color.White;
-            btnProducts.Location = new Point(40, 125);
+            btnProducts.Location = new Point(40, 180);
             btnProducts.Name = "btnProducts";
             btnProducts.Size = new Size(250, 90);
-            btnProducts.TabIndex = 1;
+            btnProducts.TabIndex = 2;
             btnProducts.Text = "Products";
             btnProducts.UseVisualStyleBackColor = false;
             btnProducts.Click += btnProducts_Click;
@@ -95,10 +109,10 @@ namespace InventoryManagementSystem.Forms
             btnCategories.FlatStyle = FlatStyle.Flat;
             btnCategories.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnCategories.ForeColor = Color.White;
-            btnCategories.Location = new Point(310, 125);
+            btnCategories.Location = new Point(310, 180);
             btnCategories.Name = "btnCategories";
             btnCategories.Size = new Size(250, 90);
-            btnCategories.TabIndex = 2;
+            btnCategories.TabIndex = 3;
             btnCategories.Text = "Categories";
             btnCategories.UseVisualStyleBackColor = false;
             btnCategories.Click += btnCategories_Click;
@@ -111,10 +125,10 @@ namespace InventoryManagementSystem.Forms
             btnStockMovement.FlatStyle = FlatStyle.Flat;
             btnStockMovement.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnStockMovement.ForeColor = Color.White;
-            btnStockMovement.Location = new Point(40, 235);
+            btnStockMovement.Location = new Point(40, 290);
             btnStockMovement.Name = "btnStockMovement";
             btnStockMovement.Size = new Size(520, 70);
-            btnStockMovement.TabIndex = 3;
+            btnStockMovement.TabIndex = 4;
             btnStockMovement.Text = "Stock In / Out";
             btnStockMovement.UseVisualStyleBackColor = false;
             btnStockMovement.Click += btnStockMovement_Click;
@@ -127,10 +141,10 @@ namespace InventoryManagementSystem.Forms
             btnExit.FlatStyle = FlatStyle.Flat;
             btnExit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnExit.ForeColor = Color.White;
-            btnExit.Location = new Point(440, 330);
+            btnExit.Location = new Point(440, 385);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(120, 38);
-            btnExit.TabIndex = 4;
+            btnExit.TabIndex = 5;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
@@ -140,17 +154,19 @@ namespace InventoryManagementSystem.Forms
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(600, 395);
+            ClientSize = new Size(600, 450);
             Controls.Add(btnExit);
             Controls.Add(btnStockMovement);
             Controls.Add(btnCategories);
             Controls.Add(btnProducts);
+            Controls.Add(lblLowStock);
             Controls.Add(pnlHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Inventory Management System";
+            Load += MainForm_Load;
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
             ResumeLayout(false);
@@ -161,6 +177,7 @@ namespace InventoryManagementSystem.Forms
         private Panel pnlHeader;
         private Label lblTitle;
         private Label lblSubtitle;
+        private Label lblLowStock;
         private Button btnProducts;
         private Button btnCategories;
         private Button btnStockMovement;

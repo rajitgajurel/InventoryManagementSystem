@@ -31,6 +31,32 @@ public class ProductData
         return products;
     }
 
+    // Products where the quantity is at or below the minimum level
+    public List<Product> GetLowStock()
+    {
+        List<Product> products = new List<Product>();
+
+        string sql = "SELECT p.product_id, p.product_code, p.product_name, p.category_id, c.category_name, " +
+                     "p.unit_price, p.quantity, p.min_stock_level " +
+                     "FROM products p INNER JOIN categories c ON p.category_id = c.category_id " +
+                     "WHERE p.quantity <= p.min_stock_level " +
+                     "ORDER BY p.quantity, p.product_name";
+
+        using (MySqlConnection conn = DatabaseHelper.GetConnection())
+        {
+            conn.Open();
+            using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    products.Add(ReadProduct(reader));
+                }
+            }
+        }
+        return products;
+    }
+
     public void Add(Product product)
     {
         string sql = "INSERT INTO products (product_code, product_name, category_id, unit_price, quantity, min_stock_level) " +
