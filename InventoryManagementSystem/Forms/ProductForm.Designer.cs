@@ -50,6 +50,10 @@ namespace InventoryManagementSystem.Forms
             btnUpdate = new Button();
             btnDelete = new Button();
             btnClear = new Button();
+            lblSearch = new Label();
+            txtSearch = new TextBox();
+            btnSearch = new Button();
+            btnShowAll = new Button();
             dgvProducts = new DataGridView();
             lblCount = new Label();
             pnlHeader.SuspendLayout();
@@ -280,6 +284,57 @@ namespace InventoryManagementSystem.Forms
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             //
+            // lblSearch
+            //
+            lblSearch.AutoSize = true;
+            lblSearch.Font = new Font("Segoe UI", 10F);
+            lblSearch.Location = new Point(20, 311);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(248, 23);
+            lblSearch.TabIndex = 11;
+            lblSearch.Text = "Search (name, code or category):";
+            //
+            // txtSearch
+            //
+            txtSearch.Font = new Font("Segoe UI", 10F);
+            txtSearch.Location = new Point(280, 308);
+            txtSearch.MaxLength = 100;
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(300, 30);
+            txtSearch.TabIndex = 6;
+            //
+            // btnSearch
+            //
+            btnSearch.BackColor = Color.FromArgb(33, 64, 95);
+            btnSearch.Cursor = Cursors.Hand;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(595, 305);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(110, 36);
+            btnSearch.TabIndex = 7;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
+            //
+            // btnShowAll
+            //
+            btnShowAll.BackColor = Color.FromArgb(108, 117, 125);
+            btnShowAll.Cursor = Cursors.Hand;
+            btnShowAll.FlatAppearance.BorderSize = 0;
+            btnShowAll.FlatStyle = FlatStyle.Flat;
+            btnShowAll.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnShowAll.ForeColor = Color.White;
+            btnShowAll.Location = new Point(715, 305);
+            btnShowAll.Name = "btnShowAll";
+            btnShowAll.Size = new Size(110, 36);
+            btnShowAll.TabIndex = 8;
+            btnShowAll.Text = "Show All";
+            btnShowAll.UseVisualStyleBackColor = false;
+            btnShowAll.Click += btnShowAll_Click;
+            //
             // dgvProducts
             //
             dgvProducts.AllowUserToAddRows = false;
@@ -308,7 +363,7 @@ namespace InventoryManagementSystem.Forms
             dgvProducts.DefaultCellStyle = dataGridViewCellStyle3;
             dgvProducts.EnableHeadersVisualStyles = false;
             dgvProducts.GridColor = Color.Gainsboro;
-            dgvProducts.Location = new Point(20, 305);
+            dgvProducts.Location = new Point(20, 355);
             dgvProducts.MultiSelect = false;
             dgvProducts.Name = "dgvProducts";
             dgvProducts.ReadOnly = true;
@@ -317,7 +372,7 @@ namespace InventoryManagementSystem.Forms
             dgvProducts.RowTemplate.Height = 32;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProducts.Size = new Size(880, 260);
-            dgvProducts.TabIndex = 6;
+            dgvProducts.TabIndex = 9;
             dgvProducts.CellClick += dgvProducts_CellClick;
             dgvProducts.CellFormatting += dgvProducts_CellFormatting;
             //
@@ -326,10 +381,10 @@ namespace InventoryManagementSystem.Forms
             lblCount.AutoSize = true;
             lblCount.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblCount.ForeColor = Color.DimGray;
-            lblCount.Location = new Point(20, 575);
+            lblCount.Location = new Point(20, 625);
             lblCount.Name = "lblCount";
             lblCount.Size = new Size(112, 20);
-            lblCount.TabIndex = 7;
+            lblCount.TabIndex = 10;
             lblCount.Text = "Total products: 0";
             //
             // ProductForm
@@ -337,9 +392,13 @@ namespace InventoryManagementSystem.Forms
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(920, 610);
+            ClientSize = new Size(920, 660);
             Controls.Add(lblCount);
             Controls.Add(dgvProducts);
+            Controls.Add(btnShowAll);
+            Controls.Add(btnSearch);
+            Controls.Add(txtSearch);
+            Controls.Add(lblSearch);
             Controls.Add(btnClear);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
@@ -382,6 +441,10 @@ namespace InventoryManagementSystem.Forms
         private Button btnUpdate;
         private Button btnDelete;
         private Button btnClear;
+        private Label lblSearch;
+        private TextBox txtSearch;
+        private Button btnSearch;
+        private Button btnShowAll;
         private DataGridView dgvProducts;
         private Label lblCount;
     }

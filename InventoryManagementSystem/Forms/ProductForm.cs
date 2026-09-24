@@ -40,11 +40,21 @@ namespace InventoryManagementSystem.Forms
             }
         }
 
+        // Shows every product, or only the matching ones when there is search text
         private void LoadProducts()
         {
             try
             {
-                List<Product> products = productData.GetAll();
+                List<Product> products;
+                if (txtSearch.Text.Trim() == "")
+                {
+                    products = productData.GetAll();
+                }
+                else
+                {
+                    products = productData.Search(txtSearch.Text);
+                }
+
                 dgvProducts.DataSource = null;
                 dgvProducts.DataSource = products;
 
@@ -81,6 +91,20 @@ namespace InventoryManagementSystem.Forms
             {
                 MessageBox.Show("Could not load products.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            ClearInputs();
+            LoadProducts();
+        }
+
+        // Empties the search box and shows all products again
+        private void btnShowAll_Click(object sender, EventArgs e)
+        {
+            txtSearch.Clear();
+            ClearInputs();
+            LoadProducts();
         }
 
         // Colours low stock rows red each time a cell is drawn

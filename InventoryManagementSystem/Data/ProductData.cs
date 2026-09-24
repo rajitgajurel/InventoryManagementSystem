@@ -57,6 +57,37 @@ public class ProductData
         return products;
     }
 
+    // Finds products where the name, code or category name contains the search text
+    public List<Product> Search(string text)
+    {
+        List<Product> products = new List<Product>();
+
+        string sql = "SELECT p.product_id, p.product_code, p.product_name, p.category_id, c.category_name, " +
+                     "p.unit_price, p.quantity, p.min_stock_level " +
+                     "FROM products p INNER JOIN categories c ON p.category_id = c.category_id " +
+                     "WHERE p.product_name LIKE @text OR p.product_code LIKE @text OR c.category_name LIKE @text " +
+                     "ORDER BY p.product_name";
+
+        using (MySqlConnection conn = DatabaseHelper.GetConnection())
+        {
+            conn.Open();
+            using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+            {
+                // % on both sides so the text can be anywhere in the value
+                cmd.Parameters.AddWithValue("@text", "%" + text.Trim() + "%");
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        products.Add(ReadProduct(reader));
+                    }
+                }
+            }
+        }
+        return products;
+    }
+
     public void Add(Product product)
     {
         string sql = "INSERT INTO products (product_code, product_name, category_id, unit_price, quantity, min_stock_level) " +
