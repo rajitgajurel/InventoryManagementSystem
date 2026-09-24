@@ -82,6 +82,13 @@ namespace InventoryManagementSystem.Forms
             ShowLowStockWarning();
         }
 
+        private void btnRestock_Click(object sender, EventArgs e)
+        {
+            RestockForm form = new RestockForm();
+            form.ShowDialog();
+            ShowLowStockWarning();
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();

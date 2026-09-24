@@ -99,6 +99,16 @@ public class Product : BaseEntity, IValidatable
         return Quantity <= MinStockLevel;
     }
 
+    // How many to order so the quantity goes back above the minimum level
+    public int GetRestockAmount()
+    {
+        if (!IsLowStock())
+        {
+            return 0;
+        }
+        return MinStockLevel - Quantity + 1;
+    }
+
     public override string GetDisplayText()
     {
         return Code + " - " + Name;

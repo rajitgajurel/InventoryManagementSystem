@@ -35,6 +35,7 @@ namespace InventoryManagementSystem.Forms
             btnProducts = new Button();
             btnCategories = new Button();
             btnStockMovement = new Button();
+            btnRestock = new Button();
             btnExit = new Button();
             pnlHeader.SuspendLayout();
             SuspendLayout();
@@ -127,11 +128,27 @@ namespace InventoryManagementSystem.Forms
             btnStockMovement.ForeColor = Color.White;
             btnStockMovement.Location = new Point(40, 290);
             btnStockMovement.Name = "btnStockMovement";
-            btnStockMovement.Size = new Size(520, 70);
+            btnStockMovement.Size = new Size(250, 70);
             btnStockMovement.TabIndex = 4;
             btnStockMovement.Text = "Stock In / Out";
             btnStockMovement.UseVisualStyleBackColor = false;
             btnStockMovement.Click += btnStockMovement_Click;
+            //
+            // btnRestock
+            //
+            btnRestock.BackColor = Color.FromArgb(111, 66, 193);
+            btnRestock.Cursor = Cursors.Hand;
+            btnRestock.FlatAppearance.BorderSize = 0;
+            btnRestock.FlatStyle = FlatStyle.Flat;
+            btnRestock.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnRestock.ForeColor = Color.White;
+            btnRestock.Location = new Point(310, 290);
+            btnRestock.Name = "btnRestock";
+            btnRestock.Size = new Size(250, 70);
+            btnRestock.TabIndex = 5;
+            btnRestock.Text = "Restock List";
+            btnRestock.UseVisualStyleBackColor = false;
+            btnRestock.Click += btnRestock_Click;
             //
             // btnExit
             //
@@ -144,7 +161,7 @@ namespace InventoryManagementSystem.Forms
             btnExit.Location = new Point(440, 385);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(120, 38);
-            btnExit.TabIndex = 5;
+            btnExit.TabIndex = 6;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
@@ -156,6 +173,7 @@ namespace InventoryManagementSystem.Forms
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(600, 450);
             Controls.Add(btnExit);
+            Controls.Add(btnRestock);
             Controls.Add(btnStockMovement);
             Controls.Add(btnCategories);
             Controls.Add(btnProducts);
@@ -181,6 +199,7 @@ namespace InventoryManagementSystem.Forms
         private Button btnProducts;
         private Button btnCategories;
         private Button btnStockMovement;
+        private Button btnRestock;
         private Button btnExit;
     }
 }
