@@ -109,6 +109,12 @@ public class Product : BaseEntity, IValidatable
         return MinStockLevel - Quantity + 1;
     }
 
+    // Value of the stock on hand (price x quantity)
+    public decimal GetStockValue()
+    {
+        return UnitPrice * Quantity;
+    }
+
     public override string GetDisplayText()
     {
         return Code + " - " + Name;
