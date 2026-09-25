@@ -36,6 +36,7 @@ namespace InventoryManagementSystem.Forms
             btnCategories = new Button();
             btnStockMovement = new Button();
             btnRestock = new Button();
+            btnHistory = new Button();
             btnExit = new Button();
             pnlHeader.SuspendLayout();
             SuspendLayout();
@@ -150,6 +151,22 @@ namespace InventoryManagementSystem.Forms
             btnRestock.UseVisualStyleBackColor = false;
             btnRestock.Click += btnRestock_Click;
             //
+            // btnHistory
+            //
+            btnHistory.BackColor = Color.FromArgb(23, 162, 184);
+            btnHistory.Cursor = Cursors.Hand;
+            btnHistory.FlatAppearance.BorderSize = 0;
+            btnHistory.FlatStyle = FlatStyle.Flat;
+            btnHistory.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnHistory.ForeColor = Color.White;
+            btnHistory.Location = new Point(40, 380);
+            btnHistory.Name = "btnHistory";
+            btnHistory.Size = new Size(250, 70);
+            btnHistory.TabIndex = 6;
+            btnHistory.Text = "Stock History";
+            btnHistory.UseVisualStyleBackColor = false;
+            btnHistory.Click += btnHistory_Click;
+            //
             // btnExit
             //
             btnExit.BackColor = Color.FromArgb(108, 117, 125);
@@ -158,10 +175,10 @@ namespace InventoryManagementSystem.Forms
             btnExit.FlatStyle = FlatStyle.Flat;
             btnExit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnExit.ForeColor = Color.White;
-            btnExit.Location = new Point(440, 385);
+            btnExit.Location = new Point(440, 475);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(120, 38);
-            btnExit.TabIndex = 6;
+            btnExit.TabIndex = 7;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
@@ -171,8 +188,9 @@ namespace InventoryManagementSystem.Forms
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(600, 450);
+            ClientSize = new Size(600, 540);
             Controls.Add(btnExit);
+            Controls.Add(btnHistory);
             Controls.Add(btnRestock);
             Controls.Add(btnStockMovement);
             Controls.Add(btnCategories);
@@ -200,6 +218,7 @@ namespace InventoryManagementSystem.Forms
         private Button btnCategories;
         private Button btnStockMovement;
         private Button btnRestock;
+        private Button btnHistory;
         private Button btnExit;
     }
 }

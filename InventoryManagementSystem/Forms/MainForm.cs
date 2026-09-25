@@ -89,6 +89,12 @@ namespace InventoryManagementSystem.Forms
             ShowLowStockWarning();
         }
 
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            HistoryForm form = new HistoryForm();
+            form.ShowDialog();
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
