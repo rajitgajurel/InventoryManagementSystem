@@ -57,7 +57,7 @@ namespace InventoryManagementSystem.Forms
             {
                 lblLowStock.BackColor = Color.FromArgb(255, 243, 205);
                 lblLowStock.ForeColor = Color.FromArgb(133, 100, 4);
-                lblLowStock.Text = "Could not check stock levels: " + ex.Message;
+                lblLowStock.Text = "Could not check stock levels. " + DatabaseHelper.GetFriendlyMessage(ex);
             }
         }
 
@@ -92,6 +92,12 @@ namespace InventoryManagementSystem.Forms
         private void btnHistory_Click(object sender, EventArgs e)
         {
             HistoryForm form = new HistoryForm();
+            form.ShowDialog();
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            ReportForm form = new ReportForm();
             form.ShowDialog();
         }
 

@@ -37,6 +37,7 @@ namespace InventoryManagementSystem.Forms
             btnStockMovement = new Button();
             btnRestock = new Button();
             btnHistory = new Button();
+            btnReport = new Button();
             btnExit = new Button();
             pnlHeader.SuspendLayout();
             SuspendLayout();
@@ -167,6 +168,22 @@ namespace InventoryManagementSystem.Forms
             btnHistory.UseVisualStyleBackColor = false;
             btnHistory.Click += btnHistory_Click;
             //
+            // btnReport
+            //
+            btnReport.BackColor = Color.FromArgb(52, 58, 64);
+            btnReport.Cursor = Cursors.Hand;
+            btnReport.FlatAppearance.BorderSize = 0;
+            btnReport.FlatStyle = FlatStyle.Flat;
+            btnReport.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnReport.ForeColor = Color.White;
+            btnReport.Location = new Point(310, 380);
+            btnReport.Name = "btnReport";
+            btnReport.Size = new Size(250, 70);
+            btnReport.TabIndex = 7;
+            btnReport.Text = "Stock Report";
+            btnReport.UseVisualStyleBackColor = false;
+            btnReport.Click += btnReport_Click;
+            //
             // btnExit
             //
             btnExit.BackColor = Color.FromArgb(108, 117, 125);
@@ -178,7 +195,7 @@ namespace InventoryManagementSystem.Forms
             btnExit.Location = new Point(440, 475);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(120, 38);
-            btnExit.TabIndex = 7;
+            btnExit.TabIndex = 8;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
@@ -190,6 +207,7 @@ namespace InventoryManagementSystem.Forms
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(600, 540);
             Controls.Add(btnExit);
+            Controls.Add(btnReport);
             Controls.Add(btnHistory);
             Controls.Add(btnRestock);
             Controls.Add(btnStockMovement);
@@ -219,6 +237,7 @@ namespace InventoryManagementSystem.Forms
         private Button btnStockMovement;
         private Button btnRestock;
         private Button btnHistory;
+        private Button btnReport;
         private Button btnExit;
     }
 }
