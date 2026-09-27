@@ -55,7 +55,7 @@ namespace InventoryManagementSystem.Forms
             //
             // pnlHeader
             //
-            pnlHeader.BackColor = Color.FromArgb(33, 64, 95);
+            pnlHeader.BackColor = Color.White;
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(0, 0);
@@ -67,7 +67,7 @@ namespace InventoryManagementSystem.Forms
             //
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.White;
+            lblTitle.ForeColor = Color.FromArgb(33, 64, 95);
             lblTitle.Location = new Point(20, 12);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(279, 37);
@@ -190,6 +190,7 @@ namespace InventoryManagementSystem.Forms
             dgvCategories.DefaultCellStyle = dataGridViewCellStyle3;
             dgvCategories.EnableHeadersVisualStyles = false;
             dgvCategories.GridColor = Color.Gainsboro;
+            dgvCategories.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCategories.Location = new Point(20, 232);
             dgvCategories.MultiSelect = false;
             dgvCategories.Name = "dgvCategories";
@@ -246,6 +247,7 @@ namespace InventoryManagementSystem.Forms
             lblCount.AutoSize = true;
             lblCount.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblCount.ForeColor = Color.DimGray;
+            lblCount.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblCount.Location = new Point(20, 472);
             lblCount.Name = "lblCount";
             lblCount.Size = new Size(190, 20);
@@ -260,6 +262,7 @@ namespace InventoryManagementSystem.Forms
             btnRefresh.FlatStyle = FlatStyle.Flat;
             btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnRefresh.ForeColor = Color.White;
+            btnRefresh.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnRefresh.Location = new Point(590, 500);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(120, 38);
@@ -276,6 +279,7 @@ namespace InventoryManagementSystem.Forms
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnClose.ForeColor = Color.White;
+            btnClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClose.Location = new Point(720, 500);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(120, 38);
@@ -308,6 +312,7 @@ namespace InventoryManagementSystem.Forms
             StartPosition = FormStartPosition.CenterParent;
             Text = "Stock Summary Report";
             Load += ReportForm_Load;
+            Resize += ReportForm_Resize;
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCategories).EndInit();

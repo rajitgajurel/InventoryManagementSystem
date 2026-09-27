@@ -51,7 +51,7 @@ namespace InventoryManagementSystem.Forms
             //
             // pnlHeader
             //
-            pnlHeader.BackColor = Color.FromArgb(33, 64, 95);
+            pnlHeader.BackColor = Color.White;
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(0, 0);
@@ -63,7 +63,7 @@ namespace InventoryManagementSystem.Forms
             //
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.White;
+            lblTitle.ForeColor = Color.FromArgb(33, 64, 95);
             lblTitle.Location = new Point(20, 12);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(247, 37);
@@ -78,6 +78,7 @@ namespace InventoryManagementSystem.Forms
             grpDetails.Controls.Add(lblDescription);
             grpDetails.Controls.Add(txtDescription);
             grpDetails.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            grpDetails.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             grpDetails.Location = new Point(20, 75);
             grpDetails.Name = "grpDetails";
             grpDetails.Size = new Size(720, 150);
@@ -216,6 +217,7 @@ namespace InventoryManagementSystem.Forms
             dgvCategories.DefaultCellStyle = dataGridViewCellStyle3;
             dgvCategories.EnableHeadersVisualStyles = false;
             dgvCategories.GridColor = Color.Gainsboro;
+            dgvCategories.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCategories.Location = new Point(20, 295);
             dgvCategories.MultiSelect = false;
             dgvCategories.Name = "dgvCategories";
@@ -233,6 +235,7 @@ namespace InventoryManagementSystem.Forms
             lblCount.AutoSize = true;
             lblCount.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblCount.ForeColor = Color.DimGray;
+            lblCount.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblCount.Location = new Point(20, 525);
             lblCount.Name = "lblCount";
             lblCount.Size = new Size(126, 20);

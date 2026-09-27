@@ -68,6 +68,24 @@ namespace InventoryManagementSystem.Forms
             }
         }
 
+        // Spreads the five summary boxes across the full width of the screen
+        private void ReportForm_Resize(object sender, EventArgs e)
+        {
+            Label[] boxes = { lblProducts, lblUnits, lblValue, lblLowStock, lblOutOfStock };
+            int gap = 12;
+            int width = (ClientSize.Width - 40 - gap * 4) / 5;
+            if (width < 120)
+            {
+                width = 120;
+            }
+
+            for (int i = 0; i < boxes.Length; i++)
+            {
+                boxes[i].Left = 20 + i * (width + gap);
+                boxes[i].Width = width;
+            }
+        }
+
         private void SetWarningColour(Label label, bool warning)
         {
             if (warning)
