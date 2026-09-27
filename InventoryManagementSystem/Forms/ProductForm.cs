@@ -36,7 +36,7 @@ namespace InventoryManagementSystem.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not load categories.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load categories.\n\n" + DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -89,7 +89,7 @@ namespace InventoryManagementSystem.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not load products.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load products.\n\n" + DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -162,7 +162,7 @@ namespace InventoryManagementSystem.Forms
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Database error.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (ValidationException ex)
             {
@@ -197,7 +197,7 @@ namespace InventoryManagementSystem.Forms
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Database error.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (ValidationException ex)
             {
@@ -227,7 +227,7 @@ namespace InventoryManagementSystem.Forms
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Database error.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -42,7 +42,7 @@ namespace InventoryManagementSystem.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not load categories.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load categories.\n\n" + DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -169,7 +169,7 @@ namespace InventoryManagementSystem.Forms
             }
             else
             {
-                MessageBox.Show("Database error.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

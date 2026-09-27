@@ -31,15 +31,47 @@ public static class DatabaseHelper
             }
             return true;
         }
-        catch (MySqlException ex)
-        {
-            errorMessage = "Could not connect to MySQL. Make sure MySQL is running in XAMPP.\n\n" + ex.Message;
-            return false;
-        }
         catch (Exception ex)
         {
-            errorMessage = ex.Message;
+            errorMessage = GetFriendlyMessage(ex);
             return false;
         }
+    }
+
+    // Turns a database error into a message the shop user can understand
+    public static string GetFriendlyMessage(Exception ex)
+    {
+        MySqlException mysqlError = ex as MySqlException;
+        if (mysqlError == null)
+        {
+            return ex.Message;
+        }
+
+        // MySQL error numbers
+        if (mysqlError.Number == 0 || mysqlError.Number == 1042)
+        {
+            return "Cannot connect to the database. Make sure MySQL is running in XAMPP, then try again.";
+        }
+        if (mysqlError.Number == 1045)
+        {
+            return "The database user name or password in App.config is wrong.";
+        }
+        if (mysqlError.Number == 1049)
+        {
+            return "The database inventory_db was not found. Run Database/inventory_db.sql first.";
+        }
+        if (mysqlError.Number == 1062)
+        {
+            return "This value already exists. Please enter a different one.";
+        }
+        if (mysqlError.Number == 1451)
+        {
+            return "This record is still used by other records, so it cannot be deleted.";
+        }
+        if (mysqlError.Number == 1406)
+        {
+            return "One of the values is too long.";
+        }
+        return "Something went wrong with the database. Please try again.\n\nDetails: " + mysqlError.Message;
     }
 }

@@ -41,7 +41,7 @@ namespace InventoryManagementSystem.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not load the products.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load the products.\n\n" + DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -92,7 +92,7 @@ namespace InventoryManagementSystem.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not load the stock history.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load the stock history.\n\n" + DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

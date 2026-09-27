@@ -46,7 +46,7 @@ namespace InventoryManagementSystem.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not load the restock list.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load the restock list.\n\n" + DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
