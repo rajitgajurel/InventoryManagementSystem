@@ -58,6 +58,9 @@ namespace InventoryManagementSystem.Forms
             selectedId = category.Id;
             txtName.Text = category.Name;
             txtDescription.Text = category.Description;
+
+            // Enter now saves changes to this category
+            AcceptButton = btnUpdate;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -157,6 +160,7 @@ namespace InventoryManagementSystem.Forms
             txtName.Clear();
             txtDescription.Clear();
             dgvCategories.ClearSelection();
+            AcceptButton = btnAdd;
             txtName.Focus();
         }
 

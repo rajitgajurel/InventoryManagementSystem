@@ -28,10 +28,12 @@ namespace InventoryManagementSystem.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            toolTip = new ToolTip(components);
             pnlHeader = new Panel();
             lblTitle = new Label();
             lblInfo = new Label();
@@ -196,6 +198,7 @@ namespace InventoryManagementSystem.Forms
             btnRefresh.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnRefresh.Location = new Point(590, 480);
             btnRefresh.Name = "btnRefresh";
+            toolTip.SetToolTip(btnRefresh, "Load the restock list again");
             btnRefresh.Size = new Size(120, 38);
             btnRefresh.TabIndex = 4;
             btnRefresh.Text = "Refresh";
@@ -213,6 +216,7 @@ namespace InventoryManagementSystem.Forms
             btnClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClose.Location = new Point(720, 480);
             btnClose.Name = "btnClose";
+            toolTip.SetToolTip(btnClose, "Go back to the home page");
             btnClose.Size = new Size(120, 38);
             btnClose.TabIndex = 5;
             btnClose.Text = "Close";
@@ -224,6 +228,7 @@ namespace InventoryManagementSystem.Forms
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
+            CancelButton = btnClose;
             ClientSize = new Size(860, 535);
             Controls.Add(btnClose);
             Controls.Add(btnRefresh);
@@ -246,6 +251,7 @@ namespace InventoryManagementSystem.Forms
 
         #endregion
 
+        private ToolTip toolTip;
         private Panel pnlHeader;
         private Label lblTitle;
         private Label lblInfo;

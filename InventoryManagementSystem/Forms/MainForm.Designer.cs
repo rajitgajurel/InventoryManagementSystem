@@ -28,9 +28,11 @@ namespace InventoryManagementSystem.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            toolTip = new ToolTip(components);
             pnlHeader = new Panel();
             lblTitle = new Label();
             lblSubtitle = new Label();
@@ -127,6 +129,7 @@ namespace InventoryManagementSystem.Forms
             btnHome.ForeColor = Color.White;
             btnHome.Location = new Point(0, 15);
             btnHome.Name = "btnHome";
+            toolTip.SetToolTip(btnHome, "Low stock warning, totals and recent stock changes");
             btnHome.Padding = new Padding(20, 0, 0, 0);
             btnHome.Size = new Size(220, 50);
             btnHome.TabIndex = 0;
@@ -146,6 +149,7 @@ namespace InventoryManagementSystem.Forms
             btnProducts.ForeColor = Color.White;
             btnProducts.Location = new Point(0, 65);
             btnProducts.Name = "btnProducts";
+            toolTip.SetToolTip(btnProducts, "Add, edit, delete and search products");
             btnProducts.Padding = new Padding(20, 0, 0, 0);
             btnProducts.Size = new Size(220, 50);
             btnProducts.TabIndex = 1;
@@ -165,6 +169,7 @@ namespace InventoryManagementSystem.Forms
             btnCategories.ForeColor = Color.White;
             btnCategories.Location = new Point(0, 115);
             btnCategories.Name = "btnCategories";
+            toolTip.SetToolTip(btnCategories, "Add, edit and delete categories");
             btnCategories.Padding = new Padding(20, 0, 0, 0);
             btnCategories.Size = new Size(220, 50);
             btnCategories.TabIndex = 2;
@@ -184,6 +189,7 @@ namespace InventoryManagementSystem.Forms
             btnStockMovement.ForeColor = Color.White;
             btnStockMovement.Location = new Point(0, 165);
             btnStockMovement.Name = "btnStockMovement";
+            toolTip.SetToolTip(btnStockMovement, "Record stock coming in or going out");
             btnStockMovement.Padding = new Padding(20, 0, 0, 0);
             btnStockMovement.Size = new Size(220, 50);
             btnStockMovement.TabIndex = 3;
@@ -203,6 +209,7 @@ namespace InventoryManagementSystem.Forms
             btnRestock.ForeColor = Color.White;
             btnRestock.Location = new Point(0, 215);
             btnRestock.Name = "btnRestock";
+            toolTip.SetToolTip(btnRestock, "Products at or below their minimum level");
             btnRestock.Padding = new Padding(20, 0, 0, 0);
             btnRestock.Size = new Size(220, 50);
             btnRestock.TabIndex = 4;
@@ -222,6 +229,7 @@ namespace InventoryManagementSystem.Forms
             btnHistory.ForeColor = Color.White;
             btnHistory.Location = new Point(0, 265);
             btnHistory.Name = "btnHistory";
+            toolTip.SetToolTip(btnHistory, "All stock in and stock out records");
             btnHistory.Padding = new Padding(20, 0, 0, 0);
             btnHistory.Size = new Size(220, 50);
             btnHistory.TabIndex = 5;
@@ -241,6 +249,7 @@ namespace InventoryManagementSystem.Forms
             btnReport.ForeColor = Color.White;
             btnReport.Location = new Point(0, 315);
             btnReport.Name = "btnReport";
+            toolTip.SetToolTip(btnReport, "Stock summary report with totals per category");
             btnReport.Padding = new Padding(20, 0, 0, 0);
             btnReport.Size = new Size(220, 50);
             btnReport.TabIndex = 6;
@@ -261,6 +270,7 @@ namespace InventoryManagementSystem.Forms
             btnExit.ForeColor = Color.White;
             btnExit.Location = new Point(0, 590);
             btnExit.Name = "btnExit";
+            toolTip.SetToolTip(btnExit, "Close the program");
             btnExit.Size = new Size(220, 50);
             btnExit.TabIndex = 7;
             btnExit.Text = "Exit";
@@ -503,6 +513,7 @@ namespace InventoryManagementSystem.Forms
 
         #endregion
 
+        private ToolTip toolTip;
         private Panel pnlHeader;
         private Label lblTitle;
         private Label lblSubtitle;

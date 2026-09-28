@@ -28,9 +28,11 @@ namespace InventoryManagementSystem.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            toolTip = new ToolTip(components);
             pnlHeader = new Panel();
             lblTitle = new Label();
             grpDetails = new GroupBox();
@@ -122,6 +124,7 @@ namespace InventoryManagementSystem.Forms
             txtCode.Location = new Point(150, 32);
             txtCode.MaxLength = 20;
             txtCode.Name = "txtCode";
+            toolTip.SetToolTip(txtCode, "Unique product code, for example BEV-001");
             txtCode.Size = new Size(220, 30);
             txtCode.TabIndex = 1;
             //
@@ -141,6 +144,7 @@ namespace InventoryManagementSystem.Forms
             txtName.Location = new Point(150, 72);
             txtName.MaxLength = 100;
             txtName.Name = "txtName";
+            toolTip.SetToolTip(txtName, "Product name (max 100 characters)");
             txtName.Size = new Size(220, 30);
             txtName.TabIndex = 3;
             //
@@ -160,6 +164,7 @@ namespace InventoryManagementSystem.Forms
             txtQuantity.Location = new Point(150, 112);
             txtQuantity.MaxLength = 9;
             txtQuantity.Name = "txtQuantity";
+            toolTip.SetToolTip(txtQuantity, "How many are in stock now (whole number)");
             txtQuantity.Size = new Size(120, 30);
             txtQuantity.TabIndex = 5;
             //
@@ -180,6 +185,7 @@ namespace InventoryManagementSystem.Forms
             cboCategory.FormattingEnabled = true;
             cboCategory.Location = new Point(570, 32);
             cboCategory.Name = "cboCategory";
+            toolTip.SetToolTip(cboCategory, "Which category the product belongs to");
             cboCategory.Size = new Size(280, 31);
             cboCategory.TabIndex = 7;
             //
@@ -199,6 +205,7 @@ namespace InventoryManagementSystem.Forms
             txtPrice.Location = new Point(570, 72);
             txtPrice.MaxLength = 12;
             txtPrice.Name = "txtPrice";
+            toolTip.SetToolTip(txtPrice, "Price of one unit, for example 2.50");
             txtPrice.Size = new Size(120, 30);
             txtPrice.TabIndex = 9;
             //
@@ -218,6 +225,7 @@ namespace InventoryManagementSystem.Forms
             txtMinLevel.Location = new Point(570, 112);
             txtMinLevel.MaxLength = 9;
             txtMinLevel.Name = "txtMinLevel";
+            toolTip.SetToolTip(txtMinLevel, "Show a low stock warning when quantity drops to this level");
             txtMinLevel.Size = new Size(120, 30);
             txtMinLevel.TabIndex = 11;
             //
@@ -231,6 +239,7 @@ namespace InventoryManagementSystem.Forms
             btnAdd.ForeColor = Color.White;
             btnAdd.Location = new Point(20, 250);
             btnAdd.Name = "btnAdd";
+            toolTip.SetToolTip(btnAdd, "Add a new product with these details");
             btnAdd.Size = new Size(120, 38);
             btnAdd.TabIndex = 2;
             btnAdd.Text = "Add";
@@ -247,6 +256,7 @@ namespace InventoryManagementSystem.Forms
             btnUpdate.ForeColor = Color.White;
             btnUpdate.Location = new Point(150, 250);
             btnUpdate.Name = "btnUpdate";
+            toolTip.SetToolTip(btnUpdate, "Save changes to the product picked in the list");
             btnUpdate.Size = new Size(120, 38);
             btnUpdate.TabIndex = 3;
             btnUpdate.Text = "Update";
@@ -263,6 +273,7 @@ namespace InventoryManagementSystem.Forms
             btnDelete.ForeColor = Color.White;
             btnDelete.Location = new Point(280, 250);
             btnDelete.Name = "btnDelete";
+            toolTip.SetToolTip(btnDelete, "Delete the product picked in the list and its stock history");
             btnDelete.Size = new Size(120, 38);
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
@@ -279,6 +290,7 @@ namespace InventoryManagementSystem.Forms
             btnClear.ForeColor = Color.White;
             btnClear.Location = new Point(410, 250);
             btnClear.Name = "btnClear";
+            toolTip.SetToolTip(btnClear, "Empty the boxes to start again");
             btnClear.Size = new Size(120, 38);
             btnClear.TabIndex = 5;
             btnClear.Text = "Clear";
@@ -301,8 +313,11 @@ namespace InventoryManagementSystem.Forms
             txtSearch.Location = new Point(280, 308);
             txtSearch.MaxLength = 100;
             txtSearch.Name = "txtSearch";
+            toolTip.SetToolTip(txtSearch, "Type part of a name, code or category and press Enter");
             txtSearch.Size = new Size(300, 30);
             txtSearch.TabIndex = 6;
+            txtSearch.Enter += txtSearch_Enter;
+            txtSearch.Leave += txtSearch_Leave;
             //
             // btnSearch
             //
@@ -314,6 +329,7 @@ namespace InventoryManagementSystem.Forms
             btnSearch.ForeColor = Color.White;
             btnSearch.Location = new Point(595, 305);
             btnSearch.Name = "btnSearch";
+            toolTip.SetToolTip(btnSearch, "Show only products that match the search text");
             btnSearch.Size = new Size(110, 36);
             btnSearch.TabIndex = 7;
             btnSearch.Text = "Search";
@@ -330,6 +346,7 @@ namespace InventoryManagementSystem.Forms
             btnShowAll.ForeColor = Color.White;
             btnShowAll.Location = new Point(715, 305);
             btnShowAll.Name = "btnShowAll";
+            toolTip.SetToolTip(btnShowAll, "Clear the search and show every product");
             btnShowAll.Size = new Size(110, 36);
             btnShowAll.TabIndex = 8;
             btnShowAll.Text = "Show All";
@@ -393,6 +410,7 @@ namespace InventoryManagementSystem.Forms
             // ProductForm
             //
             AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = btnAdd;
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(920, 660);
@@ -425,6 +443,7 @@ namespace InventoryManagementSystem.Forms
 
         #endregion
 
+        private ToolTip toolTip;
         private Panel pnlHeader;
         private Label lblTitle;
         private GroupBox grpDetails;

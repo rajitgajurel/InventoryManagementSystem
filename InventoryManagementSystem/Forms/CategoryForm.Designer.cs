@@ -28,9 +28,11 @@ namespace InventoryManagementSystem.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            toolTip = new ToolTip(components);
             pnlHeader = new Panel();
             lblTitle = new Label();
             grpDetails = new GroupBox();
@@ -102,6 +104,7 @@ namespace InventoryManagementSystem.Forms
             txtName.Location = new Point(130, 32);
             txtName.MaxLength = 50;
             txtName.Name = "txtName";
+            toolTip.SetToolTip(txtName, "Category name, must be unique (max 50 characters)");
             txtName.Size = new Size(300, 30);
             txtName.TabIndex = 1;
             //
@@ -122,6 +125,7 @@ namespace InventoryManagementSystem.Forms
             txtDescription.MaxLength = 200;
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
+            toolTip.SetToolTip(txtDescription, "Optional short description (max 200 characters)");
             txtDescription.Size = new Size(570, 60);
             txtDescription.TabIndex = 3;
             //
@@ -135,6 +139,7 @@ namespace InventoryManagementSystem.Forms
             btnAdd.ForeColor = Color.White;
             btnAdd.Location = new Point(20, 240);
             btnAdd.Name = "btnAdd";
+            toolTip.SetToolTip(btnAdd, "Add a new category with these details");
             btnAdd.Size = new Size(120, 38);
             btnAdd.TabIndex = 2;
             btnAdd.Text = "Add";
@@ -151,6 +156,7 @@ namespace InventoryManagementSystem.Forms
             btnUpdate.ForeColor = Color.White;
             btnUpdate.Location = new Point(150, 240);
             btnUpdate.Name = "btnUpdate";
+            toolTip.SetToolTip(btnUpdate, "Save changes to the category picked in the list");
             btnUpdate.Size = new Size(120, 38);
             btnUpdate.TabIndex = 3;
             btnUpdate.Text = "Update";
@@ -167,6 +173,7 @@ namespace InventoryManagementSystem.Forms
             btnDelete.ForeColor = Color.White;
             btnDelete.Location = new Point(280, 240);
             btnDelete.Name = "btnDelete";
+            toolTip.SetToolTip(btnDelete, "Delete the category picked in the list");
             btnDelete.Size = new Size(120, 38);
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
@@ -183,6 +190,7 @@ namespace InventoryManagementSystem.Forms
             btnClear.ForeColor = Color.White;
             btnClear.Location = new Point(410, 240);
             btnClear.Name = "btnClear";
+            toolTip.SetToolTip(btnClear, "Empty the boxes to start again");
             btnClear.Size = new Size(120, 38);
             btnClear.TabIndex = 5;
             btnClear.Text = "Clear";
@@ -245,6 +253,7 @@ namespace InventoryManagementSystem.Forms
             // CategoryForm
             //
             AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = btnAdd;
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(760, 560);
@@ -273,6 +282,7 @@ namespace InventoryManagementSystem.Forms
 
         #endregion
 
+        private ToolTip toolTip;
         private Panel pnlHeader;
         private Label lblTitle;
         private GroupBox grpDetails;

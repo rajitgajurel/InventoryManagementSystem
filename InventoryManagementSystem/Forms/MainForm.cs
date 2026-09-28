@@ -58,6 +58,9 @@ namespace InventoryManagementSystem.Forms
             pnlContent.Controls.Add(page);
             page.Show();
 
+            // Put the cursor in the first box so the user can type and Tab straight away
+            page.SelectNextControl(null, true, true, true, false);
+
             currentPage = page;
             SetActiveButton(button);
             lblSubtitle.Text = "Home  >  " + title;

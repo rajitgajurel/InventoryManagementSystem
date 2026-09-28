@@ -141,6 +141,31 @@ namespace InventoryManagementSystem.Forms
             txtQuantity.Text = product.Quantity.ToString();
             txtMinLevel.Text = product.MinStockLevel.ToString();
             cboCategory.SelectedValue = product.CategoryId;
+            SetEnterButton();
+        }
+
+        // Enter searches while the cursor is in the search box
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            AcceptButton = btnSearch;
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            SetEnterButton();
+        }
+
+        // Enter adds a new product, or updates the one picked in the list
+        private void SetEnterButton()
+        {
+            if (selectedId == 0)
+            {
+                AcceptButton = btnAdd;
+            }
+            else
+            {
+                AcceptButton = btnUpdate;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -290,6 +315,7 @@ namespace InventoryManagementSystem.Forms
             txtMinLevel.Clear();
             cboCategory.SelectedIndex = -1;
             dgvProducts.ClearSelection();
+            SetEnterButton();
             txtCode.Focus();
         }
     }

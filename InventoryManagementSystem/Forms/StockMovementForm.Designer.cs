@@ -28,9 +28,11 @@ namespace InventoryManagementSystem.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            toolTip = new ToolTip(components);
             pnlHeader = new Panel();
             lblTitle = new Label();
             grpMovement = new GroupBox();
@@ -113,6 +115,7 @@ namespace InventoryManagementSystem.Forms
             cboProduct.FormattingEnabled = true;
             cboProduct.Location = new Point(150, 32);
             cboProduct.Name = "cboProduct";
+            toolTip.SetToolTip(cboProduct, "Pick a product, or click it in the list below");
             cboProduct.Size = new Size(320, 31);
             cboProduct.TabIndex = 1;
             cboProduct.SelectedIndexChanged += cboProduct_SelectedIndexChanged;
@@ -145,6 +148,7 @@ namespace InventoryManagementSystem.Forms
             rdoStockIn.Font = new Font("Segoe UI", 10F);
             rdoStockIn.Location = new Point(150, 73);
             rdoStockIn.Name = "rdoStockIn";
+            toolTip.SetToolTip(rdoStockIn, "Stock arriving, for example a delivery");
             rdoStockIn.Size = new Size(88, 27);
             rdoStockIn.TabIndex = 4;
             rdoStockIn.TabStop = true;
@@ -157,6 +161,7 @@ namespace InventoryManagementSystem.Forms
             rdoStockOut.Font = new Font("Segoe UI", 10F);
             rdoStockOut.Location = new Point(270, 73);
             rdoStockOut.Name = "rdoStockOut";
+            toolTip.SetToolTip(rdoStockOut, "Stock leaving, for example a sale or damaged item");
             rdoStockOut.Size = new Size(101, 27);
             rdoStockOut.TabIndex = 5;
             rdoStockOut.Text = "Stock Out";
@@ -178,6 +183,7 @@ namespace InventoryManagementSystem.Forms
             txtQuantity.Location = new Point(150, 112);
             txtQuantity.MaxLength = 9;
             txtQuantity.Name = "txtQuantity";
+            toolTip.SetToolTip(txtQuantity, "How many units (whole number above 0)");
             txtQuantity.Size = new Size(120, 30);
             txtQuantity.TabIndex = 7;
             //
@@ -197,6 +203,7 @@ namespace InventoryManagementSystem.Forms
             txtNote.Location = new Point(490, 112);
             txtNote.MaxLength = 200;
             txtNote.Name = "txtNote";
+            toolTip.SetToolTip(txtNote, "Optional note, for example the supplier or reason");
             txtNote.Size = new Size(360, 30);
             txtNote.TabIndex = 9;
             //
@@ -210,6 +217,7 @@ namespace InventoryManagementSystem.Forms
             btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(20, 250);
             btnSave.Name = "btnSave";
+            toolTip.SetToolTip(btnSave, "Save the stock movement and update the quantity");
             btnSave.Size = new Size(120, 38);
             btnSave.TabIndex = 2;
             btnSave.Text = "Save";
@@ -226,6 +234,7 @@ namespace InventoryManagementSystem.Forms
             btnClear.ForeColor = Color.White;
             btnClear.Location = new Point(150, 250);
             btnClear.Name = "btnClear";
+            toolTip.SetToolTip(btnClear, "Empty the boxes to start again");
             btnClear.Size = new Size(120, 38);
             btnClear.TabIndex = 3;
             btnClear.Text = "Clear";
@@ -288,6 +297,7 @@ namespace InventoryManagementSystem.Forms
             // StockMovementForm
             //
             AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = btnSave;
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(920, 610);
@@ -314,6 +324,7 @@ namespace InventoryManagementSystem.Forms
 
         #endregion
 
+        private ToolTip toolTip;
         private Panel pnlHeader;
         private Label lblTitle;
         private GroupBox grpMovement;
