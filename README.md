@@ -41,3 +41,10 @@ recent stock changes. Use the menu on the left to open a screen.
 2. Add products in **Products**. Click a row to edit or delete that product.
 3. Use **Stock In / Out** when a delivery arrives or items are sold.
 4. Check **Restock List**, **Stock History** and **Stock Report** to see what is happening with the stock.
+
+## References and Tools Used
+
+- Microsoft. (n.d.). *Windows Forms documentation*. Microsoft Learn. https://learn.microsoft.com/en-us/dotnet/desktop/winforms/
+- Oracle. (n.d.). *MySQL Connector/NET developer guide*. https://dev.mysql.com/doc/connector-net/en/
+- ITS203 lecture and lab materials.
+- Tools: Visual Studio Community 2026, .NET 10, XAMPP (MySQL and phpMyAdmin), MySql.Data, Git and GitHub.
