@@ -5,14 +5,10 @@ namespace InventoryManagementSystem;
 
 static class Program
 {
-    /// <summary>
-    ///  The main entry point for the application.
-    /// </summary>
     [STAThread]
     static void Main()
     {
-        // To customize application configuration such as set high DPI settings or default font,
-        // see https://aka.ms/applicationconfiguration.
+        // Sets up the Windows Forms styles and default font
         ApplicationConfiguration.Initialize();
 
         // Check the database before opening the app
@@ -24,5 +20,5 @@ static class Program
         }
 
         Application.Run(new MainForm());
-    }    
+    }
 }

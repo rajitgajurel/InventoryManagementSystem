@@ -46,14 +46,20 @@ public class InventoryService
             MySqlTransaction transaction = conn.BeginTransaction();
             try
             {
+                // long so two very big numbers can't wrap around when added
+                int currentQuantity = productData.GetQuantity(movement.ProductId, conn, transaction);
+                long newQuantity = (long)currentQuantity + movement.GetQuantityChange();
+
                 // Stock out cannot take more than what is in stock
-                if (movement.GetQuantityChange() < 0)
+                if (newQuantity < 0)
                 {
-                    int currentQuantity = productData.GetQuantity(movement.ProductId, conn, transaction);
-                    if (movement.Quantity > currentQuantity)
-                    {
-                        throw new ValidationException("Not enough stock. Only " + currentQuantity + " left.");
-                    }
+                    throw new ValidationException("Not enough stock. Only " + currentQuantity + " left.");
+                }
+
+                // Stock in cannot go over the biggest quantity a product can have
+                if (movement.GetQuantityChange() > 0 && newQuantity > Product.MaxQuantity)
+                {
+                    throw new ValidationException("Too much stock. A product can have at most " + Product.MaxQuantity.ToString("N0") + " units.");
                 }
 
                 // StockIn gives +quantity, StockOut gives -quantity

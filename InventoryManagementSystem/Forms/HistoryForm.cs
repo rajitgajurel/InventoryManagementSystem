@@ -16,12 +16,15 @@ namespace InventoryManagementSystem.Forms
 
         private void HistoryForm_Load(object sender, EventArgs e)
         {
-            LoadProducts();
-            LoadHistory();
+            // If the products did not load the database is off, so don't show the same error twice
+            if (LoadProducts())
+            {
+                LoadHistory();
+            }
         }
 
-        // First item is "All products", then every product
-        private void LoadProducts()
+        // First item is "All products", then every product. Returns false if the database could not be read
+        private bool LoadProducts()
         {
             try
             {
@@ -38,10 +41,12 @@ namespace InventoryManagementSystem.Forms
                 cboProduct.SelectedIndexChanged -= cboProduct_SelectedIndexChanged;
                 cboProduct.SelectedIndex = 0;
                 cboProduct.SelectedIndexChanged += cboProduct_SelectedIndexChanged;
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Could not load the products.\n\n" + DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 

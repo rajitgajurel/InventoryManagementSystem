@@ -20,23 +20,29 @@ namespace InventoryManagementSystem.Forms
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
-            LoadCategories();
-            LoadProducts();
+            // If the categories did not load the database is off, so don't show the same error twice
+            if (LoadCategories())
+            {
+                LoadProducts();
+            }
         }
 
-        // Fills the category drop down
-        private void LoadCategories()
+        // Fills the category drop down, returns false if the database could not be read
+        private bool LoadCategories()
         {
             try
             {
-                // ValueMember lets the grid click pick the category by its id
+                // Show the category name, ValueMember lets the grid click pick the category by its id
+                cboCategory.DisplayMember = "Name";
                 cboCategory.ValueMember = "Id";
                 cboCategory.DataSource = categoryData.GetAll();
                 cboCategory.SelectedIndex = -1;
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Could not load categories.\n\n" + DatabaseHelper.GetFriendlyMessage(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
@@ -85,7 +91,15 @@ namespace InventoryManagementSystem.Forms
                         lowCount++;
                     }
                 }
-                lblCount.Text = "Total products: " + products.Count + "     Low stock (shown in red): " + lowCount;
+                // Tell the user when the search found nothing instead of just showing an empty list
+                if (products.Count == 0 && txtSearch.Text.Trim() != "")
+                {
+                    lblCount.Text = "No products found for \"" + txtSearch.Text.Trim() + "\". Click Show All to see every product.";
+                }
+                else
+                {
+                    lblCount.Text = "Total products: " + products.Count + "     Low stock (shown in red): " + lowCount;
+                }
             }
             catch (Exception ex)
             {
@@ -182,6 +196,9 @@ namespace InventoryManagementSystem.Forms
 
                 productData.Add(product);
                 MessageBox.Show("Product added.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Clear the search so the new product shows in the list straight away
+                txtSearch.Clear();
                 ClearInputs();
                 LoadProducts();
             }

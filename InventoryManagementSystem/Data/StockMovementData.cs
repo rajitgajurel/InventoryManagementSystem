@@ -6,6 +6,11 @@ namespace InventoryManagementSystem.Data;
 // Saves stock movements in the stock_movements table
 public class StockMovementData
 {
+    // Used by both queries that load movements, the join gives each movement its product name
+    private const string SelectMovements =
+        "SELECT m.movement_id, m.product_id, p.product_name, m.movement_type, m.quantity, m.note, m.movement_date " +
+        "FROM stock_movements m INNER JOIN products p ON m.product_id = p.product_id ";
+
     // Uses the connection and transaction from InventoryService so it saves together with the quantity
     public void Add(StockMovement movement, MySqlConnection conn, MySqlTransaction transaction)
     {
@@ -30,9 +35,7 @@ public class StockMovementData
     {
         List<StockMovement> movements = new List<StockMovement>();
 
-        string sql = "SELECT m.movement_id, m.product_id, p.product_name, m.movement_type, m.quantity, m.note, m.movement_date " +
-                     "FROM stock_movements m INNER JOIN products p ON m.product_id = p.product_id " +
-                     "ORDER BY m.movement_date DESC, m.movement_id DESC";
+        string sql = SelectMovements + "ORDER BY m.movement_date DESC, m.movement_id DESC";
 
         using (MySqlConnection conn = DatabaseHelper.GetConnection())
         {
@@ -54,8 +57,7 @@ public class StockMovementData
     {
         List<StockMovement> movements = new List<StockMovement>();
 
-        string sql = "SELECT m.movement_id, m.product_id, p.product_name, m.movement_type, m.quantity, m.note, m.movement_date " +
-                     "FROM stock_movements m INNER JOIN products p ON m.product_id = p.product_id " +
+        string sql = SelectMovements +
                      "WHERE m.product_id = @productId " +
                      "ORDER BY m.movement_date DESC, m.movement_id DESC";
 

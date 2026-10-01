@@ -6,15 +6,16 @@ namespace InventoryManagementSystem.Data;
 // Loads and saves products in the products table
 public class ProductData
 {
+    // Used by every query that loads products, the join gives each product its category name
+    private const string SelectProducts =
+        "SELECT p.product_id, p.product_code, p.product_name, p.category_id, c.category_name, " +
+        "p.unit_price, p.quantity, p.min_stock_level " +
+        "FROM products p INNER JOIN categories c ON p.category_id = c.category_id ";
+
     public List<Product> GetAll()
     {
         List<Product> products = new List<Product>();
-
-        // Join so each product also gets its category name
-        string sql = "SELECT p.product_id, p.product_code, p.product_name, p.category_id, c.category_name, " +
-                     "p.unit_price, p.quantity, p.min_stock_level " +
-                     "FROM products p INNER JOIN categories c ON p.category_id = c.category_id " +
-                     "ORDER BY p.product_name";
+        string sql = SelectProducts + "ORDER BY p.product_name";
 
         using (MySqlConnection conn = DatabaseHelper.GetConnection())
         {
@@ -36,9 +37,7 @@ public class ProductData
     {
         List<Product> products = new List<Product>();
 
-        string sql = "SELECT p.product_id, p.product_code, p.product_name, p.category_id, c.category_name, " +
-                     "p.unit_price, p.quantity, p.min_stock_level " +
-                     "FROM products p INNER JOIN categories c ON p.category_id = c.category_id " +
+        string sql = SelectProducts +
                      "WHERE p.quantity <= p.min_stock_level " +
                      "ORDER BY p.quantity, p.product_name";
 
@@ -62,9 +61,7 @@ public class ProductData
     {
         List<Product> products = new List<Product>();
 
-        string sql = "SELECT p.product_id, p.product_code, p.product_name, p.category_id, c.category_name, " +
-                     "p.unit_price, p.quantity, p.min_stock_level " +
-                     "FROM products p INNER JOIN categories c ON p.category_id = c.category_id " +
+        string sql = SelectProducts +
                      "WHERE p.product_name LIKE @text OR p.product_code LIKE @text OR c.category_name LIKE @text " +
                      "ORDER BY p.product_name";
 
@@ -73,8 +70,11 @@ public class ProductData
             conn.Open();
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
             {
+                // % and _ mean "anything" in LIKE, a \ in front makes MySQL look for the real character
+                string search = text.Trim().Replace("\\", "\\\\").Replace("%", "\\%").Replace("_", "\\_");
+
                 // % on both sides so the text can be anywhere in the value
-                cmd.Parameters.AddWithValue("@text", "%" + text.Trim() + "%");
+                cmd.Parameters.AddWithValue("@text", "%" + search + "%");
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {

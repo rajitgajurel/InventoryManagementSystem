@@ -5,6 +5,10 @@ namespace InventoryManagementSystem.Models;
 // A product sold in the shop
 public class Product : BaseEntity, IValidatable
 {
+    // Biggest numbers the shop would ever need, the database columns can't hold more
+    public const decimal MaxPrice = 99999999.99m;
+    public const int MaxQuantity = 1000000;
+
     // Private fields so bad numbers can't be set directly
     private decimal unitPrice;
     private int quantity;
@@ -79,17 +83,24 @@ public class Product : BaseEntity, IValidatable
         {
             throw new ValidationException("Please choose a category.");
         }
-        if (UnitPrice < 0)
+
+        // Negative numbers are already stopped by the properties above
+        // Numbers that are too big would be cut down by the database without telling the user
+        if (UnitPrice > MaxPrice)
         {
-            throw new ValidationException("Unit price cannot be negative.");
+            throw new ValidationException("Unit price is too big. The most allowed is " + MaxPrice.ToString("N2") + ".");
         }
-        if (Quantity < 0)
+        if (decimal.Round(UnitPrice, 2) != UnitPrice)
         {
-            throw new ValidationException("Quantity cannot be negative.");
+            throw new ValidationException("Unit price can only have 2 decimal places.");
         }
-        if (MinStockLevel < 0)
+        if (Quantity > MaxQuantity)
         {
-            throw new ValidationException("Minimum stock level cannot be negative.");
+            throw new ValidationException("Quantity is too big. The most allowed is " + MaxQuantity.ToString("N0") + ".");
+        }
+        if (MinStockLevel > MaxQuantity)
+        {
+            throw new ValidationException("Minimum stock level is too big. The most allowed is " + MaxQuantity.ToString("N0") + ".");
         }
     }
 

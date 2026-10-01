@@ -30,7 +30,7 @@ namespace InventoryManagementSystem.Forms
                 List<Product> products = productData.GetAll();
 
                 // The drop down gets its own copy so picking a product does not move the grid
-                cboProduct.ValueMember = "Id";
+                // No DisplayMember is set, so it shows Product.ToString() (code - name)
                 cboProduct.DataSource = new List<Product>(products);
                 cboProduct.SelectedIndex = -1;
 
@@ -87,7 +87,21 @@ namespace InventoryManagementSystem.Forms
             }
 
             Product product = (Product)dgvProducts.Rows[e.RowIndex].DataBoundItem;
-            cboProduct.SelectedValue = product.Id;
+            SelectProduct(product.Id);
+        }
+
+        // Picks the product with this id in the drop down
+        private void SelectProduct(int productId)
+        {
+            for (int i = 0; i < cboProduct.Items.Count; i++)
+            {
+                Product product = (Product)cboProduct.Items[i];
+                if (product.Id == productId)
+                {
+                    cboProduct.SelectedIndex = i;
+                    return;
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -121,7 +135,7 @@ namespace InventoryManagementSystem.Forms
                 // Reload so the new quantity shows, and keep the same product picked
                 int productId = product.Id;
                 LoadProducts();
-                cboProduct.SelectedValue = productId;
+                SelectProduct(productId);
                 txtQuantity.Clear();
                 txtNote.Clear();
                 txtQuantity.Focus();
